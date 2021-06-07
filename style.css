@@ -1,6 +1,40 @@
+
+html {
+    height: 100%;
+    background-color: #bee3db;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+
+}
+#navbar {
+    margin: 0;
+    background-color: #FFCAAF;
+}
 .display-books {
     display: flex;
 }
 .display-col {
     flex: 1;
+}
+section {
+    background-color: #89B0AE;
+}
+.display-books {
+    background-color: #555B6E;
+    border: 2px solid black;
+    height: 150px
+}
+.book-col {
+    background-color: #FAF9F9;
+    border: 2px solid black;
+}
+.read-col, .unread-col{
+    height: 50px;
+    width: 50px;
+    background-color: white;
+}
+.hide-col {
+    display: none;
 }
