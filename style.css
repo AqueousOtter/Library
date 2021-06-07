@@ -1,0 +1,6 @@
+.display-books {
+    display: flex;
+}
+.display-col {
+    flex: 1;
+}
