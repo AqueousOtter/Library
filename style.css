@@ -34,6 +34,7 @@ section {
     height: 50px;
     width: 50px;
     background-color: white;
+    border: solid black 2px;
 }
 .hide-col {
     display: none;
