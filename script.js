@@ -7,7 +7,7 @@ const columns = document.getElementsByClassName("column");
 const button = document.querySelectorAll("button");
 const addButton = document.getElementsByClassName("addToLibrary");
 
-// 6.16 TODO: Add button to allow user to add more books, add images to cards
+// 6.16 TODO: Add button to allow user to add more books, add images to cards. Show
 
 function Book(title, author, pages, read){
     this.title = title;
