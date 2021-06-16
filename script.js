@@ -6,13 +6,7 @@ const unreadCol =document.getElementById("unreadCol");
 const columns = document.getElementsByClassName("column");
 const button = document.querySelectorAll("button");
 
-// 6.15 TODO: Work out logic for removing book on button click
-button.addEventListener("click", ()=> {
-    let index = column.getAttribute('data');
-    userLibrary.splice(index, 1);
-    console.log(userLibrary.length);
-});
-
+// 6.16 TODO: Add button to allow user to add more books, add images to cards
 
 function Book(title, author, pages, read){
     this.title = title;
@@ -32,41 +26,50 @@ Book.prototype.info = function() {
     return console.log(`${this.title} by ${this.author}, ${this.pages} pages long, ${this.read}`);
 }
 
-
 function addToLibrary(title, author, pages, read) {
     let addBook = new Book(title,author,pages,read);
-    let column = document.createElement("div");
-    if(addBook.read){   //displays added book in correct row
-        readContainer.appendChild(column).className = "read-col";
-    }
-    else {
-        unreadContainer.appendChild(column).className = "unread-col";
-    }
-    return userLibrary.push(addBook);
+    userLibrary.push(addBook);
+    let newLib = []; //to handle adding new book without having to redo display
+    newLib.push(addBook);
+    createRow(newLib);
 }
 
 //function to create rows based off of library length
 function createRow(userLibrary){ 
     for (let i = 0; i < userLibrary.length; ++i){
         let column = document.createElement("div");
+        column.innerHTML = bookCard(userLibrary[i]);
+        column.setAttribute('data', i);
+        let button = document.createElement("button");
+        button.setAttribute('data', i);
+        button.innerText = "Delete";
+        column.appendChild(button).className = "removeBTN";
         if(userLibrary[i].read){
             readContainer.appendChild(column).className = "read-col";
-            column.setAttribute('data', i);
-            console.log(column.getAttribute('data'));
-            column.innerHTML = bookCard(userLibrary[i]);        }
+            button.addEventListener("click", ()=>{
+                let btnData = button.getAttribute('data');
+                let cardData = column.getAttribute('data');
+                if (btnData == cardData){
+                    readContainer.removeChild(column);
+                }
+            })
+            }
         else {
             unreadContainer.appendChild(column).className = "unread-col";
-            column.setAttribute('data', i);
-            console.log(column.getAttribute('data'));
-            column.innerHTML = bookCard(userLibrary[i]);
+            button.addEventListener("click", ()=>{
+                let btnData = button.getAttribute('data');
+                let cardData = column.getAttribute('data');
+                if (btnData == cardData){
+                    unreadContainer.removeChild(column);
+                }
+            })
         }
     }
 }
 
 //function to generate html for books
 function bookCard(book){
-    let bookHTML = `<h3>${book.title}</h3> <p>${book.author}</p> <p>${book.pages} pages</p> <p>Read: ${book.read}</p> <button class="removeBTN">Remove</button>`;
-
+    let bookHTML = `<h3>${book.title}</h3> <p>${book.author}</p> <p>${book.pages} pages</p> <p>Read: ${book.read}</p>`;
     return bookHTML;
 }
-
+createRow(userLibrary);
