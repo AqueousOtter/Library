@@ -8,6 +8,10 @@ html, body {
     padding: 0;
 
 }
+header {
+    margin-top: 0;
+    padding: 0;
+}
 #navbar {
     margin: 0;
     background-color: #FFCAAF;
@@ -37,7 +41,7 @@ section {
     background-color: white;
     border: solid black 2px;
 }
-.hide-col {
+.hide {
     display: none;
 }
 .removeBTN {

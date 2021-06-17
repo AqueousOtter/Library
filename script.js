@@ -4,10 +4,11 @@ const unreadContainer = document.getElementById("unreadContainer");
 const readCol = document.getElementById("readCol");
 const unreadCol =document.getElementById("unreadCol");
 const columns = document.getElementsByClassName("column");
-const button = document.querySelectorAll("button");
-const addButton = document.getElementsByClassName("addToLibrary");
+const form = document.getElementById("addForm");
 
-// 6.16 TODO: Add button to allow user to add more books, add images to cards. Show
+const addButton = document.getElementById("addToLibrary");
+
+// 6.16 TODO: Finish form for adding books, add toggle for hide, add images to cards.
 
 function Book(title, author, pages, read){
     this.title = title;
@@ -26,13 +27,9 @@ userLibrary.push(book3);
 Book.prototype.info = function() {
     return console.log(`${this.title} by ${this.author}, ${this.pages} pages long, ${this.read}`);
 }
-addButton.addEventListener("click", ()=>{
-    if(readContainer.contains(this)){
-        console.log("1");
-    }
-    else{
-        console.log("2");
-    }
+addButton.addEventListener("click", function() {
+
+
 })
 function addToLibrary(title, author, pages, read) {
     let addBook = new Book(title,author,pages,read);

@@ -11,7 +11,20 @@
     </div>
 </header>
 <body>
-<button class="removeBTN"></button>
+    <button id="addToLibrary">Add New</button>
+    <form>
+        <label for="title">Title: </label>
+        <input type="text" id="title" name="title">
+        <label for="author">Author: </label>
+        <input type="text" id="author" name="author">
+        <label for="pages">Page Count: </label>
+        <input type="number" id="pages" name="pages">
+        <label for="readStatus">Read</label>
+        <input type="radio" id="read" name="readStatus" value="read">
+        <label for="unread">Unread</label>
+        <input type="radio" id="unread" name="readStatus" value="unread">
+        <input type="submit" value="Submit">
+    </form>
     <section id="read-display">
         <h2>Your Books</h2>
         <div class="display-books" id="readContainer">
@@ -20,7 +33,7 @@
                  ?function to toggle class that makes a slide bar?-->
 
         </div>
-        <button class="addToLibrary">Add New</button>
+
     </section>
     <section id="unread-display">
         <h2>Next Reads</h2>
@@ -29,7 +42,7 @@
                  ?function to toggle class that makes a slide bar?-->
 
         </div>
-        <button class="addToLibrary">Add New</button>
+        <button class="addToLibrary" id="addUnread">Add New</button>
     </section>
 <script src="./script.js"></script>
 </body>
