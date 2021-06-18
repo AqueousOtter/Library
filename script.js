@@ -1,4 +1,4 @@
-//6/18 TODO: Work on local storage and radio button
+//6/18 TODO: Work on local storage logic and start styling
 
 
 const readContainer = document.getElementById("readContainer");
@@ -8,18 +8,9 @@ const unreadCol =document.getElementById("unreadCol");
 const columns = document.getElementsByClassName("column");
 const form = document.getElementById("addForm");
 
-
-/**Local storage varibles
- */
-const inputAuthor = document.getElementById("author").value;
-const inputTitle = document.getElementById("title").value;
-const inputPages = document.getElementById("pages").value;
-const inputRead = document.getElementById("read").checked;
 const submit = document.getElementById("submit");
 
 const addButton = document.getElementById("addToLibrary");
-
-
 
 function Book(title, author, pages, read){
     this.title = title;
@@ -46,7 +37,12 @@ addButton.addEventListener("click", function() {
 
 // local storage
 submit.addEventListener("click", ()=>{
-    localStorage.setItem(inputTitle, inputAuthor, inputPages, inputRead);
+    /**Local storage varibles
+ */
+    let inputAuthor = document.getElementById("author").value;
+    let inputTitle = document.getElementById("title").value;
+    let inputPages = document.getElementById("pages").value;
+    let inputRead = document.getElementById("read");
     if (inputRead.checked){
         addToLibrary(inputTitle, inputAuthor, inputPages, true);
     }
@@ -54,6 +50,7 @@ submit.addEventListener("click", ()=>{
         addToLibrary(inputTitle, inputAuthor, inputPages, false);
 
     }
+    updateLocal();
     form.classList.toggle("hide");
     addButton.classList.toggle("hide");
 })
@@ -71,36 +68,57 @@ function createRow(userLibrary){
         let column = document.createElement("div");
         column.innerHTML = bookCard(userLibrary[i]);
         column.setAttribute('data', i);
-        let button = document.createElement("button");
-        button.setAttribute('data', i);
-        button.innerText = "Delete";
-        column.appendChild(button).className = "removeBTN";
+        let deleteButton = document.createElement("button");
+        deleteButton.setAttribute('data', i);
+        deleteButton.innerText = "Delete";
+        column.appendChild(deleteButton).className = "removeBTN";
         if(userLibrary[i].read){
             readContainer.appendChild(column).className = "read-col";
-            button.addEventListener("click", ()=>{
-                let btnData = button.getAttribute('data');
+            deleteButton.addEventListener("click", ()=>{
+                let btnData = deleteButton.getAttribute('data');
                 let cardData = column.getAttribute('data');
                 if (btnData == cardData){
                     readContainer.removeChild(column);
+                    userLibrary.splice(btnData, 1);
+                    updateLocal();
                 }
             })
             }
         else {
             unreadContainer.appendChild(column).className = "unread-col";
-            button.addEventListener("click", ()=>{
-                let btnData = button.getAttribute('data');
+            deleteButton.addEventListener("click", ()=>{
+                let btnData = deleteButton.getAttribute('data');
                 let cardData = column.getAttribute('data');
                 if (btnData == cardData){
                     unreadContainer.removeChild(column);
+                    userLibrary.splice(btnData, 1);
+                    updateLocal();
                 }
             })
         }
     }
 }
-
+//function to store/update data
+function updateLocal(){
+    let myBooks = [];
+    for (let i = 0; i < userLibrary.length; ++i){
+        myBooks[i] = userLibrary[i];
+    }
+    localStorage["myBooks"] = JSON.stringify(myBooks);
+    userLibrary = JSON.parse(localStorage["myBooks"]);
+}
 //function to generate html for books
 function bookCard(book){
-    let bookHTML = `<h3>${book.title}</h3> <p>${book.author}</p> <p>${book.pages} pages</p> <p>${book.read}</p>`;
+    let bookHTML = `<h3>${book.title}</h3> <p>${book.author}</p> <p>${book.pages} pages</p>`;
+    if (book.read){
+        bookHTML += `<p>Read</p>`;
+    }
+    else{
+        bookHTML += `<p>Unread</p>`
+    }
     return bookHTML;
 }
+//gets local storage to create row
+userLibrary = JSON.parse(localStorage["myBooks"]);
+updateLocal();
 createRow(userLibrary);
