@@ -1,4 +1,6 @@
-localStorage
+//6/18 TODO: Work on local storage and radio button
+
+
 const readContainer = document.getElementById("readContainer");
 const unreadContainer = document.getElementById("unreadContainer");
 const readCol = document.getElementById("readCol");
@@ -17,7 +19,7 @@ const submit = document.getElementById("submit");
 
 const addButton = document.getElementById("addToLibrary");
 
-// 6.16 TODO: Finish form for adding books, add toggle for hide, add images to cards.
+
 
 function Book(title, author, pages, read){
     this.title = title;
