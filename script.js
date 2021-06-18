@@ -1,10 +1,19 @@
-
+localStorage
 const readContainer = document.getElementById("readContainer");
 const unreadContainer = document.getElementById("unreadContainer");
 const readCol = document.getElementById("readCol");
 const unreadCol =document.getElementById("unreadCol");
 const columns = document.getElementsByClassName("column");
 const form = document.getElementById("addForm");
+
+
+/**Local storage varibles
+ */
+const inputAuthor = document.getElementById("author").value;
+const inputTitle = document.getElementById("title").value;
+const inputPages = document.getElementById("pages").value;
+const inputRead = document.getElementById("read").checked;
+const submit = document.getElementById("submit");
 
 const addButton = document.getElementById("addToLibrary");
 
@@ -28,8 +37,23 @@ Book.prototype.info = function() {
     return console.log(`${this.title} by ${this.author}, ${this.pages} pages long, ${this.read}`);
 }
 addButton.addEventListener("click", function() {
+    form.classList.toggle("hide");
+    addButton.classList.toggle("hide");
 
+})
 
+// local storage
+submit.addEventListener("click", ()=>{
+    localStorage.setItem(inputTitle, inputAuthor, inputPages, inputRead);
+    if (inputRead.checked){
+        addToLibrary(inputTitle, inputAuthor, inputPages, true);
+    }
+    else{
+        addToLibrary(inputTitle, inputAuthor, inputPages, false);
+
+    }
+    form.classList.toggle("hide");
+    addButton.classList.toggle("hide");
 })
 function addToLibrary(title, author, pages, read) {
     let addBook = new Book(title,author,pages,read);
@@ -74,7 +98,7 @@ function createRow(userLibrary){
 
 //function to generate html for books
 function bookCard(book){
-    let bookHTML = `<h3>${book.title}</h3> <p>${book.author}</p> <p>${book.pages} pages</p> <p>Read: ${book.read}</p>`;
+    let bookHTML = `<h3>${book.title}</h3> <p>${book.author}</p> <p>${book.pages} pages</p> <p>${book.read}</p>`;
     return bookHTML;
 }
 createRow(userLibrary);
