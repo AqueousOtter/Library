@@ -1,20 +1,44 @@
-
-html {
-    height: 100%;
-    background-color: #bee3db;
-}
-html, body {
+@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Roboto&display=swap');
+* {
     margin: 0;
     padding: 0;
+    font-size: 100%;
+}
 
+html, body {
+    height: 100%;
+    overflow: auto;
+    background-color: #ffffff;
+    
+}
+h1 {
+    font-family: 'Righteous', cursive;
+    font-size: 75px;
+    color: #ffd6ba;
+    text-shadow: 3px 3px 5px  rgb(0, 0, 0);
+}
+h2 {
+    font-family: 'Righteous', cursive;
+    font-size: 50px;
+    color: #ffd6ba;
+    text-shadow: 2px 1px 3px  rgb(0, 0, 0);
+}
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    
+}
+#top {
+    padding: 15px 0px;
 }
 header {
+
+    text-align: center;
     margin-top: 0;
-    padding: 0;
-}
-#navbar {
-    margin: 0;
-    background-color: #FFCAAF;
+    margin-bottom: 50px;
+    border: 1px solid rgb(82, 82, 82);
+    box-shadow: 2px 2px 5px #89B0AE;
+    background-color: #BEE3DB;
 }
 .display-books {
     display: flex;
@@ -22,23 +46,27 @@ header {
 .display-col {
     flex: 1;
 }
+article {
+    background-color: #89b0ae79;
+    width: 80%;
+    padding: 50px;
+    margin: 50px auto;
+}
 section {
-    background-color: #89B0AE;
+    margin: 50px auto;
 }
 .display-books {
-    background-color: #555B6E;
+    background-color: #555b6e8e;
     border: 2px solid black;
-
-
 }
 .book-col {
     background-color: #FAF9F9;
     border: 2px solid black;
 }
-.read-col, .unread-col{
+.readCol, .unreadCol{
     width: 20%;
     height: 250px;
-    background-color: white;
+    background-color: rgb(255, 255, 255);
     border: solid black 2px;
 }
 .hide {

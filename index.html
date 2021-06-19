@@ -1,53 +1,58 @@
+<!--6/19 LASTAT: Working on section styling, h2, cards -->
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="./style.css">
     <title>bookie.</title>
+
 </head>
-<header>
-    <div id="navbar">
-        <h1>bookie.</h1>
-        <p>An always free platform to keep track of the books you have read and the ones you haven't.</p>
-    </div>
-</header>
 <body>
-    <button id="addToLibrary">Add New</button>
-
-    <fieldset id="addForm" class="hide">
-        <legend>New Book</legend>
-        <label for="title">Title:</label>
-        <input type="text" id="title">
-        <label for="author">Author:</label>
-        <input type="text" id="author">
-        <label for="read">Read:</label>
-        <input type="checkbox" id="read">
-        <label for="pages">Pages:</label>
-        <input type="number" id="pages">
-        <button type="submit" id="submit">Submit</button>
-    </fieldset>
-
-    <section id="read-display">
-        <h2>Your Books</h2>
-        <div class="display-books" id="readContainer">
-
-            <!-- Use flex to display contents
-                 ?function to toggle class that makes a slide bar?-->
-
+    <header>
+        <div id="top">
+            <h1>bookie.</h1>
+            <p>an always free platform to keep track of the books you have read and the ones you haven't.</p>
         </div>
+    </header>
 
-    </section>
-    <section id="unread-display">
-        <h2>Next Reads</h2>
-        <div class="display-books" id="unreadContainer">
-            <!-- Use flex to display contents
-                 ?function to toggle class that makes a slide bar?-->
 
+    <article>
+        <div id="libraryChanges">
+            <button id="addToLibrary">add new</button>
+            <button id="defaults">default bookie</button>
         </div>
-        <button class="addToLibrary" id="addUnread">Add New</button>
-    </section>
+        <!--fieldset form for adding new books, hidden until add new is clicked-->
+        <fieldset id="addForm" class="hide">
+            <legend>new book</legend>
+            <label for="title">title:</label>
+            <input type="text" id="title">
+            <label for="author">author:</label>
+            <input type="text" id="author">
+            <label for="read">read:</label>
+            <input type="checkbox" id="read">
+            <label for="pages">pages:</label>
+            <input type="number" id="pages">
+            <button type="submit" id="submit">submit</button>
+        </fieldset>
+        <section>
+            <h2>your books</h2>
+            <div class="display-books" id="readContainer"><!--Displays read books-->
+            </div>
+
+        </section>
+        <section>
+            <h2>next reads</h2>
+            <div class="display-books" id="unreadContainer"><!--Displays unread books-->
+            </div>
+        </section>
+    </article>
 <script src="./script.js"></script>
-</body>
 <footer>
 
 </footer>
+</body>
+
 </html> 
