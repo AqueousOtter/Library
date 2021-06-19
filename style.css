@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&family=Righteous&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -8,65 +8,70 @@
 html, body {
     height: 100%;
     overflow: auto;
-    background-color: #ffffff;
-    
+    background-image: url("./images/sharon-mccutcheon-eMP4sYPJ9x0-unsplash.jpg");
+    background-size: 100%;
 }
 h1 {
     font-family: 'Righteous', cursive;
     font-size: 75px;
-    color: #ffd6ba;
+    color: #fff692;
     text-shadow: 3px 3px 5px  rgb(0, 0, 0);
 }
 h2 {
-    font-family: 'Righteous', cursive;
+    font-family: 'Gochi Hand', cursive;
     font-size: 50px;
-    color: #ffd6ba;
-    text-shadow: 2px 1px 3px  rgb(0, 0, 0);
+    border-bottom: 8px ridge #ffe8df ;
+    margin-bottom: 20px;
+    color:   #ece0cf ;
+    text-shadow: 2px 1px 3px  rgb(104, 104, 104);
 }
 body {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Gochi Hand', cursive;
+    font-size: 25px;
+
     
 }
 #top {
     padding: 15px 0px;
 }
 header {
-
     text-align: center;
     margin-top: 0;
-    margin-bottom: 50px;
-    border: 1px solid rgb(82, 82, 82);
+    margin-bottom: 200px;
+    border: 1px none rgb(82, 82, 82);
     box-shadow: 2px 2px 5px #89B0AE;
     background-color: #BEE3DB;
 }
-.display-books {
+.displayBooks {
     display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-wrap: wrap;
+    background-color: #555b6e4d;
+    border: 2px solid black;
 }
-.display-col {
-    flex: 1;
-}
+
 article {
-    background-color: #89b0ae79;
-    width: 80%;
+    margin: 50px auto;
+    background-image: url("./images/marjan-blan-marjanblan-5Ft4NWTmeJE-unsplash.jpg");
+    background-color:  #d7bc98 ;
+    background-repeat: no-repeat;
+    box-shadow: 5px 5px 15px;
+    border-radius: 10px;
+    width: 40%;
     padding: 50px;
+    background-size: 110%;
+}
+
+#readContainer {
     margin: 50px auto;
-}
-section {
-    margin: 50px auto;
-}
-.display-books {
-    background-color: #555b6e8e;
-    border: 2px solid black;
-}
-.book-col {
-    background-color: #FAF9F9;
-    border: 2px solid black;
 }
 .readCol, .unreadCol{
-    width: 20%;
-    height: 250px;
-    background-color: rgb(255, 255, 255);
+    width: 25%;
+    margin: 10px auto;
+    justify-content: space-between;
+    background-color: rgba(255, 255, 255, 0.781);
     border: solid black 2px;
 }
 .hide {
@@ -74,4 +79,8 @@ section {
 }
 .removeBTN {
     color: red;
+}
+#unreadCard, #readCard {
+    background-color: #fff692;
+    height: 100%;
 }

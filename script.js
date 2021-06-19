@@ -118,11 +118,11 @@ function updateLocal(){
 function bookCard(book){
     let bookHTML; 
     if (book.read){
-        bookHTML = `<h3><img class="readImg" src="./images/outline_check_circle_black_24dp.png"> ${book.title}</h3> <p>${book.author}</p> <p>${book.pages} pages</p><p>Read</p>`;
+        bookHTML = `<div id="readCard"><h3><img class="readImg" src="./images/outline_check_circle_black_24dp.png"> ${book.title}</h3><br> <p>By: ${book.author}</p> <p>Length: ${book.pages} pages</p><p>Status: Read</p></div>`;
 
     }
     else{
-        bookHTML = `<div id="unreadCard"><h3><img class="readImg" src="./images/outline_highlight_off_black_24dp.png"> ${book.title}</h3> <p>${book.author}</p> <p>${book.pages} pages</p><p>Unread</p></div>`
+        bookHTML = `<div id="unreadCard"><h3><img class="readImg" src="./images/outline_highlight_off_black_24dp.png"> ${book.title}</h3> <br><p>By: ${book.author}</p> <p>Length: ${book.pages} pages</p><p>Status: Unread</p></div>`
     }
     return bookHTML;
 }
