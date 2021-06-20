@@ -15,7 +15,10 @@ h1 {
     font-family: 'Righteous', cursive;
     font-size: 75px;
     color: #fff692;
-    text-shadow: 3px 3px 5px  rgb(0, 0, 0);
+    text-shadow: -1px 1px 0 #000,
+                 1px 1px 0 #000,
+                 1px -1px 0 #000,
+                -1px -1px 0 #000;
 }
 h2 {
     font-family: 'Gochi Hand', cursive;
@@ -23,7 +26,10 @@ h2 {
     border-bottom: 8px ridge #ffe8df ;
     margin-bottom: 20px;
     color:   #ece0cf ;
-    text-shadow: 2px 1px 3px  rgb(104, 104, 104);
+    text-shadow: -1px 1px 0 #000,
+                1px 1px 0 #000,
+                1px -1px 0 #000,
+                -1px -1px 0 #000;
 }
 body {
     margin: 0;
@@ -48,8 +54,6 @@ header {
     flex-direction: row;
     width: 100%;
     flex-wrap: wrap;
-    background-color: #555b6e4d;
-    border: 2px solid black;
 }
 
 article {
@@ -59,7 +63,7 @@ article {
     background-repeat: no-repeat;
     box-shadow: 5px 5px 15px;
     border-radius: 10px;
-    width: 40%;
+    width: 50%;
     padding: 50px;
     background-size: 110%;
 }
@@ -68,19 +72,28 @@ article {
     margin: 50px auto;
 }
 .readCol, .unreadCol{
-    width: 25%;
-    margin: 10px auto;
-    justify-content: space-between;
-    background-color: rgba(255, 255, 255, 0.781);
+    width: auto;
+    margin: 10px;
+    height: 100%;
+    padding: 15px;
+    background-color: #fff692;
     border: solid black 2px;
 }
 .hide {
     display: none;
 }
-.removeBTN {
-    color: red;
+.readCol button, .unreadCol button {
+    color: white;
+    background-color: rgb(255, 74, 74);
+    width: auto;
+    margin: 0  auto;
+    border: 1px solid black;
+    border-radius: 50px;
+    font-size: medium;
+    padding: 5px 8px;
+    
 }
 #unreadCard, #readCard {
-    background-color: #fff692;
-    height: 100%;
+    height: 200px;
+    
 }

@@ -70,14 +70,16 @@ function addToLibrary(title, author, pages, read) {
 function createRow(userLibrary){ 
     for (let i = 0; i < userLibrary.length; ++i){
         let column = document.createElement("div");
-        column.innerHTML = bookCard(userLibrary[i]);
+        
         column.setAttribute('data', i);
         let deleteButton = document.createElement("button");
         deleteButton.setAttribute('data', i);
-        deleteButton.innerText = "Delete";
-        column.appendChild(deleteButton).className = "removeBTN";
+        deleteButton.innerText = "remove";
+        column.innerHTML = bookCard(userLibrary[i]);
+        
         if(userLibrary[i].read){
             readContainer.appendChild(column).className = "readCol";
+            column.appendChild(deleteButton).className = "readCol";
             deleteButton.addEventListener("click", ()=>{
                 let btnData = deleteButton.getAttribute('data');
                 let cardData = column.getAttribute('data');
@@ -90,6 +92,8 @@ function createRow(userLibrary){
             }
         else {
             unreadContainer.appendChild(column).className = "unreadCol";
+            column.appendChild(deleteButton).className = "unreadCol";
+
             deleteButton.addEventListener("click", ()=>{
                 let btnData = deleteButton.getAttribute('data');
                 let cardData = column.getAttribute('data');
