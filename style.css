@@ -4,12 +4,24 @@
     padding: 0;
     font-size: 100%;
 }
-
+a {
+    text-decoration: none;
+    color: #abf1ab;
+    text-shadow: -1px 1px 0 #000,
+    1px 1px 0 #000,
+    1px -1px 0 #000,
+   -1px -1px 0 #000;
+}
+a:hover {
+    color: #FFF;
+}
 html, body {
     height: 100%;
     overflow: auto;
     background-image: url("./images/sharon-mccutcheon-eMP4sYPJ9x0-unsplash.jpg");
     background-size: 100%;
+
+    
 }
 h1 {
     padding-bottom: 15px;
@@ -22,6 +34,7 @@ h1 {
                 -1px -1px 0 #000;
 }
 h2 {
+    text-align: left;
     font-family: 'Gochi Hand', cursive;
     font-size: 50px;
     border-bottom: 8px ridge #ffe8df ;
@@ -36,8 +49,6 @@ body {
     margin: 0;
     font-family: 'Gochi Hand', cursive;
     font-size: 25px;
-
-    
 }
 #top {
     padding: 15px 0px;
@@ -60,9 +71,7 @@ section {
     width: 100%;
     flex-wrap: wrap;
 }
-
 article {
-    
     margin: 50px auto;
     background-image: url("./images/marjan-blan-marjanblan-5Ft4NWTmeJE-unsplash.jpg");
     background-color:  #d7bc98 ;
@@ -74,15 +83,20 @@ article {
     padding-right: 6px;
     background-size: 110%;
 }
+article p {
+    text-align: center;
+}
 input { 
     width: 100%;
 }
 legend {
+    font-size: 35px;
+    font-style: italic;
     text-align: center;
 }
 
 input[type=checkbox]{
-    width: auto;
+    width: 25%;
 }
 #libraryChanges button{
     float: right;
@@ -90,32 +104,21 @@ input[type=checkbox]{
     padding: 3px 7px;
     margin-right: 5px;
     border-radius: 32px;
+    box-shadow: 2px 1px 2px;
+    border: 2px solid;
 }
 #code{
-    background-color: #BEE3DB;
-    border: 2px solid;
-}
-#code img {
-    width: 85%;
+    background-color: #abd3df;
 }
 #addToLibrary {
-    border: 2px solid;
     background-color: #c8f1c8;
-}
-#addToLibrary img {
-    border:  3px solid #c8f1c8;
 }
 button:active {
     box-shadow: 2px 2px 2px #000;
     transform: translateY(4px);
 }
-
-
 #defaults {
-    box-shadow: 1px 1px;
-    border: 2px solid;
     background-color: rgba(255, 0, 0, 0.205);
-
 }
 #submit {
     padding: 6px 25px;
@@ -123,9 +126,10 @@ button:active {
     background-color: #f5deb393;
     float: right;
     border: 1px solid black;
+    box-shadow: 1px 2px 1px;
+
 }
 #readContainer {
-
     margin: 50px auto;
 }
 .readCol, .unreadCol{
@@ -140,6 +144,7 @@ button:active {
 .hide {
     display: none;
 }
+
 .readCol button, .unreadCol button {
     font-family: 'Righteous', cursive;
     color: white;
@@ -148,18 +153,17 @@ button:active {
                 1px -1px 0 #000,
                 -1px -1px 0 #000;
     background-color: rgb(255, 74, 74);
-    width: auto;
-    margin: 0  auto;
-    border: 1px solid black;
+    width: 50%;
+    margin: 5px auto;
+    border: 2px solid black;
     border-radius: 50px;
     font-size: large;
     padding: 8px 10px;
     opacity: .8;
-    box-shadow: 1px 2px 1px black;
-    
+    box-shadow: 1px 1px 1px black;  
 }
+
 #unreadCard, #readCard {
     height: 200px;
     text-align: center;
-
 }

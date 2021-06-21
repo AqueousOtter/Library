@@ -1,4 +1,6 @@
-//6/21 working on some additional logic
+//6/21 Future:
+    //fix display bugs when refreshing
+    //split true and false read into seperate arrays to fix blank displays after removing
 
 const readContainer = document.getElementById("readContainer");
 const unreadContainer = document.getElementById("unreadContainer");
@@ -30,9 +32,18 @@ Book.prototype.info = function() {
     return console.log(`${this.title} by ${this.author}, ${this.pages} pages long, ${this.read}`);
 }
 //hides/shows adding form
+let changedAddColor = false //for checking if color has changed.Future: Update this method?
 addButton.addEventListener("click", function() {
     form.classList.toggle("hide");
-    addButton.classList.toggle("hide");
+    if (!changedAddColor){
+        addButton.setAttribute("style", "background-color : rgba(255, 0, 0, 0.205);")
+        changedAddColor = true;
+    }
+    else {
+        addButton.setAttribute("style", "background-color : #c8f1c8;")
+        changedAddColor = false;
+    }
+
     returnDefault.classList.toggle("hide");
 
 })
@@ -58,7 +69,7 @@ submit.addEventListener("click", ()=>{
     }
     updateLocal();
     form.classList.toggle("hide");
-    addButton.classList.toggle("hide");
+    addButton.setAttribute("style", "background-color : #c8f1c8;");
     returnDefault.classList.toggle("hide");
 })
 function addToLibrary(title, author, pages, read) {
@@ -73,7 +84,6 @@ function addToLibrary(title, author, pages, read) {
 function createRow(userLibrary){ 
     for (let i = 0; i < userLibrary.length; ++i){
         let column = document.createElement("div");
-        
         column.setAttribute('data', i);
         let deleteButton = document.createElement("button");
         let modButton = document.createElement("button");
@@ -85,24 +95,27 @@ function createRow(userLibrary){
         column.innerHTML = bookCard(userLibrary[i]);
         
         if(userLibrary[i].read){
+            modButton.innerText = "read";
             readContainer.appendChild(column).className = "readCol";
+            modButton.setAttribute("style",  "background-color: #abf1ab");
+            column.appendChild(modButton).className = "readMod";
             column.appendChild(deleteButton).className = "readCol";
-            column.appendChild(modButton).className = "readCol";
-            modButton.addEventListener("click", ()=> {
-                userLibrary[i].read = false; //last spot
-            })
             deleteButton.addEventListener("click", ()=>{
                 let btnData = deleteButton.getAttribute('data');
                 let cardData = column.getAttribute('data');
                 if (btnData == cardData){
                     readContainer.removeChild(column);
                     userLibrary.splice(btnData, 1);
+                    bookCheck();
                     updateLocal();
                 }
             })
             }
         else {
+            modButton.innerText = "unread";
             unreadContainer.appendChild(column).className = "unreadCol";
+            modButton.setAttribute("style",  "background-color: #abd3df");
+            column.appendChild(modButton).className = "unreadMod";
             column.appendChild(deleteButton).className = "unreadCol";
 
             deleteButton.addEventListener("click", ()=>{
@@ -111,24 +124,57 @@ function createRow(userLibrary){
                 if (btnData == cardData){
                     unreadContainer.removeChild(column);
                     userLibrary.splice(btnData, 1);
-                    updateLocal();
+                    bookCheck();
+                    updateLocal();    
                 }
             })
         }
+        modButton.addEventListener("click", ()=> {
+            if (userLibrary[i].read){
+                userLibrary[i].read = false;
+            }
+            else{
+                userLibrary[i].read = true;
+            }
+            updateLocal();
+            location.reload();
         
+        });
+        //event listeners to modify mod buttons colors
+        modButton.addEventListener("mouseover", ()=>{
+            if(modButton.innerHTML == 'unread'){
+                modButton.setAttribute("style",  "background-color: #abf1ab");
+                modButton.innerText = "read";
+            }
+            else if (modButton.innerHTML == 'read'){
+                modButton.setAttribute("style",  "background-color: #abd3df");
+                modButton.innerText = "unread";
+            }
+
+        });
+        modButton.addEventListener("mouseleave", ()=>{
+            if(modButton.innerHTML == 'unread'){
+                modButton.setAttribute("style",  "background-color: #abf1ab");
+                modButton.innerText = "read";
+            }
+            else if (modButton.innerHTML == 'read'){
+                modButton.setAttribute("style",  "background-color: #abd3df");
+                modButton.innerText = "unread";
+            }
+        });
     }
-    
-    
 }
 //function to store/update data
 function updateLocal(){
+
     let myBooks = [];
     for (let i = 0; i < userLibrary.length; ++i){
         myBooks[i] = userLibrary[i];
     }
     localStorage["myBooks"] = JSON.stringify(myBooks);
     userLibrary = JSON.parse(localStorage["myBooks"]);
-}
+
+};
 //function to generate html for books
 function bookCard(book){
     let bookHTML; 
@@ -140,9 +186,27 @@ function bookCard(book){
         bookHTML = `<div id="unreadCard"><br><h3>${book.title}</h3> <br><p>By: ${book.author}</p> <p>Length: ${book.pages} pages</p><p>Status: Unread</p></div>`
     }
     return bookHTML;
-}
-//gets local storage to create row
+};
 
-userLibrary = JSON.parse(localStorage["myBooks"]);
-updateLocal();
-createRow(userLibrary);
+//function to leave a blank book placeholder if all books are deleted
+//Patch empty rows
+function bookCheck(){
+    let blankLibrary = [];
+    if (unreadContainer.childElementCount == 0){
+        let blankBook = new Book("Please Add A Book", "bookie", 101, false);
+        blankLibrary.push(blankBook);
+       createRow(blankLibrary);
+        
+    }
+    else if(readContainer.childElementCount == 0){
+        let blankBook = new Book("Please Add A Book", "bookie", 100, true);
+        blankLibrary.push(blankBook);
+       createRow(blankLibrary);
+    }
+}
+//load after dom
+document.addEventListener("DOMContentLoaded", ()=>{
+    userLibrary = JSON.parse(localStorage["myBooks"]);
+    updateLocal();
+    createRow(userLibrary);
+});
