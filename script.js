@@ -1,3 +1,4 @@
+//6/21 working on some additional logic
 
 const readContainer = document.getElementById("readContainer");
 const unreadContainer = document.getElementById("unreadContainer");
@@ -32,6 +33,7 @@ Book.prototype.info = function() {
 addButton.addEventListener("click", function() {
     form.classList.toggle("hide");
     addButton.classList.toggle("hide");
+    returnDefault.classList.toggle("hide");
 
 })
 
@@ -57,6 +59,7 @@ submit.addEventListener("click", ()=>{
     updateLocal();
     form.classList.toggle("hide");
     addButton.classList.toggle("hide");
+    returnDefault.classList.toggle("hide");
 })
 function addToLibrary(title, author, pages, read) {
     let addBook = new Book(title,author,pages,read);
@@ -73,13 +76,21 @@ function createRow(userLibrary){
         
         column.setAttribute('data', i);
         let deleteButton = document.createElement("button");
+        let modButton = document.createElement("button");
         deleteButton.setAttribute('data', i);
+        modButton.setAttribute('data', i);
+        deleteButton.setAttribute('title', "remove book from collection");
+        modButton.setAttribute('title',"modify book's read status")
         deleteButton.innerText = "remove";
         column.innerHTML = bookCard(userLibrary[i]);
         
         if(userLibrary[i].read){
             readContainer.appendChild(column).className = "readCol";
             column.appendChild(deleteButton).className = "readCol";
+            column.appendChild(modButton).className = "readCol";
+            modButton.addEventListener("click", ()=> {
+                userLibrary[i].read = false; //last spot
+            })
             deleteButton.addEventListener("click", ()=>{
                 let btnData = deleteButton.getAttribute('data');
                 let cardData = column.getAttribute('data');
@@ -122,11 +133,11 @@ function updateLocal(){
 function bookCard(book){
     let bookHTML; 
     if (book.read){
-        bookHTML = `<div id="readCard"><h3><img class="readImg" src="./images/outline_check_circle_black_24dp.png"> ${book.title}</h3><br> <p>By: ${book.author}</p> <p>Length: ${book.pages} pages</p><p>Status: Read</p></div>`;
+        bookHTML = `<div id="readCard"><br><h3>${book.title}</h3><br> <p>By: ${book.author}</p> <p>Length: ${book.pages} pages</p><p>Status: Read</p></div>`;
 
     }
     else{
-        bookHTML = `<div id="unreadCard"><h3><img class="readImg" src="./images/outline_highlight_off_black_24dp.png"> ${book.title}</h3> <br><p>By: ${book.author}</p> <p>Length: ${book.pages} pages</p><p>Status: Unread</p></div>`
+        bookHTML = `<div id="unreadCard"><br><h3>${book.title}</h3> <br><p>By: ${book.author}</p> <p>Length: ${book.pages} pages</p><p>Status: Unread</p></div>`
     }
     return bookHTML;
 }
