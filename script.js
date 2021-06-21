@@ -25,7 +25,7 @@ const defaultLibrary = []; //default library for first time/reset button pushed
 defaultLibrary.push(book1);
 defaultLibrary.push(book2);
 defaultLibrary.push(book3);
-userLibrary = defaultLibrary;
+
 
 //info function from earlier excercise
 Book.prototype.info = function() {
@@ -206,7 +206,16 @@ function bookCheck(){
 }
 //load after dom
 document.addEventListener("DOMContentLoaded", ()=>{
-    userLibrary = JSON.parse(localStorage["myBooks"]);
-    updateLocal();
-    createRow(userLibrary);
+    if(localStorage.length == 0){
+        userLibrary = defaultLibrary;
+        updateLocal();
+        
+        createRow(userLibrary);
+    }
+    else{
+        userLibrary = JSON.parse(localStorage["myBooks"]);
+        updateLocal();
+        
+        createRow(userLibrary);
+    }
 });
