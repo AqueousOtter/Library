@@ -87,14 +87,31 @@ article p {
     text-align: center;
 }
 input { 
+    font-family: 'Gochi Hand', cursive;
     width: 100%;
+    font-size: larger;
+    color:   #fde7c7f5 ;
+    text-decoration: underline;
+    background-color: rgba(0, 0, 0, 0);
+    border: 1px solid black;
+    border-radius: 25px;
+    padding-left: 10px;
+    text-shadow: -1px 1px 0 #000,
+    1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
 }
 legend {
     font-size: 35px;
     font-style: italic;
     text-align: center;
 }
+#formDiv {
+    width: 50%;
+    margin: auto;
+    font-size: 30px;
 
+}
 input[type=checkbox]{
     width: 25%;
 }
